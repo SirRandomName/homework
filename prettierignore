@@ -1,0 +1,14 @@
+package.json
+package-lock.json
+**/package.json
+**/package-lock.json
+
+yarn.lock
+dist/
+.angulardoc.json
+.vscode/*
+.idea/
+
+wiki/*
+e2e/*
+node_modules/*
