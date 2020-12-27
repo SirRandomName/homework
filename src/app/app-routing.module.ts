@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {ROUTING_TREE} from './app-routing.model';
+import {LoginAuthGuard} from './core/auth/login-auth.guard';
 import {LoginComponent} from './pages/login/login.component';
 
 const ROUTES: Routes = [
@@ -12,7 +13,8 @@ const ROUTES: Routes = [
   {
     path: ROUTING_TREE.login.path,
     component: LoginComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [LoginAuthGuard]
   },
   {
     path: ROUTING_TREE.search.path,
