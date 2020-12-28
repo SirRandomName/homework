@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/internal/Observable';
-import {AuthStore} from './auth/auth.model';
+import {AuthStore} from '../auth/auth.model';
 
 @Injectable({
   providedIn: 'root'

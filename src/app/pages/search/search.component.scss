@@ -1,0 +1,43 @@
+@import 'src/styles/viewports.scss';
+
+$distance-from-search-bar: 40px;
+
+.search-bar-container {
+  max-width: 800px;
+  display: block;
+  margin: 0 auto;
+  align-items: center;
+  width: 90%;
+  app-search-bar {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: $medium-min) {
+  .search-bar-container {
+    display: flex;
+    app-search-bar {
+      margin-left: 10px;
+    }
+  }
+}
+
+.results {
+  margin-top: $distance-from-search-bar;
+  .result-counter {
+    margin-bottom: $distance-from-search-bar/2;
+  }
+}
+
+.feedback-text {
+  margin-top: $distance-from-search-bar;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  > * {
+    text-align: center;
+  }
+  h2 {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,13 @@
+<header class="header">
+  <nav class="container">
+    <section class="company">
+      <h2 class="company-name">
+        M<svg class="company-logo"><use [attr.xlink:href]="'assets/film.svg#film'"></use></svg>vieDB
+      </h2>
+    </section>
+    <section class="user">
+      <p>{{ userName }}</p>
+      <button class="button" (click)="logOut()">Logout</button>
+    </section>
+  </nav>
+</header>

@@ -1,1 +1,23 @@
-<p>search works!</p>
+<section class="search-bar-container">
+  <h2>Search:</h2>
+  <app-search-bar placeholder=" enter a title such as RoboCop" [value]="inputValue" (search)="search($event)"></app-search-bar>
+</section>
+
+<section class="feedback-text" *ngIf="!(movieSearchResults$ | async)">
+  <h2>Please use the search bar to find the movie that you are looking for!</h2>
+  <p>(Search required minimum 3 characters!)</p>
+</section>
+
+<section class="results" *ngIf="movieSearchResults$ | async as searchResults">
+  <h2 class="result-counter">{{ totalResults }} Search result(s)</h2>
+  <app-cards [cards]="searchResults" (onClick)="openDetailsDialog($event)" (scrolled)="onScroll()"></app-cards>
+  <div class="feedback-text" *ngIf="totalResults === 0">
+    <h2>Sorry, there is no movie with this title :(</h2>
+  </div>
+</section>
+
+<app-dialog [isOpen]="isDetailsDialogOpen" (closeDialog)="onClose()">
+  <app-movie-details [details]="actualDetails" [imdbTitleUrl]="imdbTitleUrl"></app-movie-details>
+</app-dialog>
+
+<app-jump-to-top-button></app-jump-to-top-button>

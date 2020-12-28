@@ -12,9 +12,7 @@ export class LoginComponent {
   loginForm: FormGroup;
 
   constructor(private _fb: FormBuilder, private _authService: AuthService) {
-    const emailValidatorPattern = new RegExp(
-      "^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$"
-    );
+    const emailValidatorPattern = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$');
     this.loginForm = this._fb.group({
       username: ['', [Validators.required, Validators.pattern(emailValidatorPattern)]],
       password: [

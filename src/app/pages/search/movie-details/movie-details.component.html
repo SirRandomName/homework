@@ -1,0 +1,40 @@
+<section *ngIf="details" class="content">
+  <section class="left">
+    <img class="poster" [src]="details.poster_path | posterLink" alt="poster of {{ details.title || details.original_title }}" />
+  </section>
+  <section class="right">
+    <h2>{{ details?.title || details?.original_title }}</h2>
+    <p>{{ details?.overview }}</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>Genres</td>
+          <td>
+            {{ details.genres | genreObject }}
+            <span *ngIf="details.genres.length === 0">unknown</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Released</td>
+          <td>
+            {{ details?.release_date | date: onlyYearFormat }}
+          </td>
+        </tr>
+        <tr>
+          <td>Length</td>
+          <td>
+            {{ details.runtime | hourCounter }}
+          </td>
+        </tr>
+        <tr>
+          <td>Country</td>
+          <td>
+            <span *ngFor="let country of details.production_countries; let last = last">{{ country.name + (last ? '' : ', ') }}</span>
+            <span *ngIf="details.production_countries.length === 0">unknown</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Get more info on <a class="imdb-link" (click)="navigate(imdbTitleUrl + details.imdb_id)" target="_blank">IMDB</a>!</p>
+  </section>
+</section>
