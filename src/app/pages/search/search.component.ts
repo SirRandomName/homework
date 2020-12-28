@@ -11,15 +11,21 @@ import {SearchService} from './search.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  // search functionality
   inputValue: string = '';
   lastSearch!: string;
-  actualDetails: IMovieDetails | null = null;
   movieSearchResults$: Subject<IMovie[]> = new Subject<IMovie[]>();
   actualPage: number = 1;
   totalPages: number | undefined;
   results: IMovie[] = [];
   totalResults: number = 0;
-  constructor(private _searchService: SearchService) {}
+  // dialog
+  isDetailsDialogOpen = false;
+  actualDetails: IMovieDetails | null = null;
+  imdbTitleUrl!: string;
+  constructor(private _searchService: SearchService) {
+    this.imdbTitleUrl = this._searchService.imdbTitleUrl;
+  }
 
   ngOnInit(): void {}
 
@@ -46,5 +52,17 @@ export class SearchComponent implements OnInit {
       });
       this.lastSearch = text;
     }
+  }
+
+  onClose(): void {
+    this.isDetailsDialogOpen = false;
+    this.actualDetails = null;
+  }
+
+  openDialog(id: number): void {
+    this._searchService.getDetails(id).subscribe((data: IMovieDetails) => {
+      this.isDetailsDialogOpen = true;
+      this.actualDetails = data;
+    });
   }
 }

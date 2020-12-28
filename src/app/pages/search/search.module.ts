@@ -5,9 +5,10 @@ import {SearchRoutingModule} from './search-routing.module';
 import {SearchService} from './search.service';
 import {ComponentsModule} from 'src/app/shared/components/components.module';
 import {HttpClientModule} from '@angular/common/http';
+import {MovieDetailsComponent} from './movie-details/movie-details.component';
 
 @NgModule({
-  declarations: [SearchComponent],
+  declarations: [SearchComponent, MovieDetailsComponent],
   providers: [SearchService],
   imports: [CommonModule, SearchRoutingModule, ComponentsModule, HttpClientModule]
 })
