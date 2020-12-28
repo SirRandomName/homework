@@ -23,8 +23,20 @@ export class SearchComponent implements OnInit {
   isDetailsDialogOpen = false;
   actualDetails: IMovieDetails | null = null;
   imdbTitleUrl!: string;
-  constructor(private _searchService: SearchService) {
+  // use query params
+  searchParam!: string | null;
+  detailsParam!: string | null;
+  constructor(private _searchService: SearchService, private _router: Router, private _route: ActivatedRoute) {
     this.imdbTitleUrl = this._searchService.imdbTitleUrl;
+    this.searchParam = this._route.snapshot.queryParams['search'];
+    this.detailsParam = this._route.snapshot.queryParams['details'];
+    if (typeof this.searchParam === 'string') {
+      this.search(this.searchParam);
+      this.inputValue = this.searchParam;
+    }
+    if (typeof this.detailsParam === 'string') {
+      this.openDialog(Number(this.detailsParam));
+    }
   }
 
   ngOnInit(): void {}
@@ -51,18 +63,21 @@ export class SearchComponent implements OnInit {
         this.movieSearchResults$.next(this.results);
       });
       this.lastSearch = text;
+      this._router.navigate([ROUTING_TREE.search.path], {queryParams: {search: text}});
     }
   }
 
   onClose(): void {
     this.isDetailsDialogOpen = false;
     this.actualDetails = null;
+    this._router.navigate([ROUTING_TREE.search.path], {queryParams: {search: this.lastSearch}});
   }
 
   openDialog(id: number): void {
     this._searchService.getDetails(id).subscribe((data: IMovieDetails) => {
       this.isDetailsDialogOpen = true;
       this.actualDetails = data;
+      this._router.navigate([ROUTING_TREE.search.path], {queryParams: {search: this.lastSearch, details: id}});
     });
   }
 }
