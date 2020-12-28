@@ -2,10 +2,20 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
 import {Observable} from 'rxjs';
+import {IGenre, IGenreList} from './search.model';
+import {take} from 'rxjs/operators';
 
 @Injectable()
 export class SearchService {
-  constructor(private _http: HttpClient) {}
+  imdbTitleUrl = `${environment.imdbHostUrl}title/`;
+  genreList: IGenre[] = [];
+  constructor(private _http: HttpClient) {
+    this.getGenreList()
+      .pipe(take(1))
+      .subscribe((data: IGenreList) => {
+        this.genreList = data.genres;
+      });
+  }
 
   search(value: string, page: number = 0): Observable<any> {
     let params = new HttpParams()
