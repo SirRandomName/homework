@@ -10,7 +10,7 @@
         <tr>
           <td>Genres</td>
           <td>
-            {{ details.genres | genreObjects }}
+            {{ details.genres | genreObject }}
             <span *ngIf="details.genres.length === 0">unknown</span>
           </td>
         </tr>
