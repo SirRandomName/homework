@@ -23,7 +23,7 @@ $overlay-i-index: 2000;
   // 10 pedding
   width: calc(100% - 20px);
   max-height: calc(100vh - 20px);
-  overflow-x: scroll;
+  overflow-x: auto;
   .header {
     height: 40px;
     display: flex;
