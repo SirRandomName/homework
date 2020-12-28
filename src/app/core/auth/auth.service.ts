@@ -3,7 +3,7 @@ import {FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
 import {ROUTING_TREE} from 'src/app/app-routing.model';
-import {LocalStorageHandlerService} from '../local-storage-handler.service';
+import {LocalStorageHandlerService} from '../storage/local-storage-handler.service';
 import {AuthStore, UserState} from './auth.model';
 
 @Injectable({
