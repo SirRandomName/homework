@@ -6,10 +6,11 @@ import {AppComponent} from './app.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {PagesModule} from './pages/pages.module';
 import {ComponentsModule} from './shared/components/components.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, PagesModule, ComponentsModule],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, ReactiveFormsModule, PagesModule, ComponentsModule],
   providers: [],
   bootstrap: [AppComponent]
 })
