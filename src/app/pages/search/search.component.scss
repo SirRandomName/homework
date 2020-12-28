@@ -13,7 +13,7 @@ $distance-from-search-bar: 40px;
   }
 }
 
-@media screen and (min-width: $small-max) {
+@media screen and (min-width: $medium-min) {
   .search-bar-container {
     display: flex;
     app-search-bar {
