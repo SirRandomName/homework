@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
-import {Observable} from 'rxjs';
-import {IGenre, IGenreList} from './search.model';
-import {take} from 'rxjs/operators';
+import {EMPTY, Observable} from 'rxjs';
+import {IGenre, IGenreList, IMovieDetailsError} from './search.model';
+import {catchError, take} from 'rxjs/operators';
 
 @Injectable()
 export class SearchService {
@@ -44,6 +44,11 @@ export class SearchService {
   getDetails(id: number): Observable<any> {
     let params = new HttpParams().set('api_key', environment.movieApiKey);
     const url = `${environment.movieHostUrl}movie/${id}`;
-    return this._http.get(url, {params});
+    return this._http.get(url, {params}).pipe(catchError(this.handleDetailsError));
+  }
+
+  handleDetailsError(error: IMovieDetailsError) {
+    alert(`An error occurred: ${error.error.status_message}`);
+    return EMPTY;
   }
 }
