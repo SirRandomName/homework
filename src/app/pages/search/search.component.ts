@@ -67,10 +67,19 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  onScroll() {
+    this.actualPage++;
+    this.search(this.lastSearch, this.actualPage);
+  }
+
   onClose(): void {
     this.isDetailsDialogOpen = false;
     this.actualDetails = null;
     this._router.navigate([ROUTING_TREE.search.path], {queryParams: {search: this.lastSearch}});
+  }
+
+  openDetailsDialog(movie: IMovie): void {
+    this.openDialog(movie.id);
   }
 
   openDialog(id: number): void {

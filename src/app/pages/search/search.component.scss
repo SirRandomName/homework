@@ -1,0 +1,33 @@
+$distance-from-search-bar: 40px;
+
+.search-container {
+  max-width: 800px;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  width: 90%;
+  app-search-bar {
+    margin-left: 10px;
+    width: 100%;
+  }
+}
+
+.results {
+  margin-top: $distance-from-search-bar;
+  .result-counter {
+    margin-bottom: $distance-from-search-bar/2;
+  }
+}
+
+.feedback-text {
+  margin-top: $distance-from-search-bar;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  > * {
+    text-align: center;
+  }
+  h2 {
+    margin-bottom: 20px;
+  }
+}
