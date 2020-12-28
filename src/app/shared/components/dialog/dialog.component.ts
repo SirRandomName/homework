@@ -1,5 +1,6 @@
 import {animate, style, transition, trigger} from '@angular/animations';
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {DIALOG_ANIMATION_TIME} from './dialog.model';
 
 @Component({
   selector: 'app-dialog',
@@ -12,9 +13,9 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
           opacity: 0,
           top: '30%'
         }),
-        animate('300ms', style({opacity: 1, top: '50%'}))
+        animate(`${DIALOG_ANIMATION_TIME}ms`, style({opacity: 1, top: '50%'}))
       ]),
-      transition(':leave', [animate('300ms', style({opacity: 0, top: 0}))])
+      transition(':leave', [animate(`${DIALOG_ANIMATION_TIME}ms`, style({opacity: 0, top: 0}))])
     ])
   ]
 })

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {ROUTING_TREE} from 'src/app/app-routing.model';
+import {DIALOG_ANIMATION_TIME} from 'src/app/shared/components/dialog/dialog.model';
 import {IMovie, IMovieDetails, ISearchMovieResponse} from './search.model';
 import {SearchService} from './search.service';
 
@@ -73,9 +74,12 @@ export class SearchComponent implements OnInit {
   }
 
   onClose(): void {
+    // do not destroy the content until the animation is done
     this.isDetailsDialogOpen = false;
-    this.actualDetails = null;
-    this._router.navigate([ROUTING_TREE.search.path], {queryParams: {search: this.lastSearch}});
+    setTimeout(() => {
+      this.actualDetails = null;
+      this._router.navigate([ROUTING_TREE.search.path], {queryParams: {search: this.lastSearch}});
+    }, DIALOG_ANIMATION_TIME);
   }
 
   openDetailsDialog(movie: IMovie): void {
