@@ -1,0 +1,25 @@
+.content {
+  display: flex;
+  width: 100%;
+  .left {
+    width: 40%;
+    .poster {
+      width: 100%;
+    }
+  }
+  .right {
+    margin-left: 20px;
+    width: 60%;
+    > *:not(:last-child) {
+      margin-bottom: 15px;
+    }
+    .imdb-link {
+      color: var(--imdb-yellow);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    table td {
+      vertical-align: baseline;
+    }
+  }
+}
