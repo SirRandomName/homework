@@ -10,7 +10,7 @@
 
 <section class="results" *ngIf="movieSearchResults$ | async as searchResults">
   <h2 class="result-counter">{{ totalResults }} Search result(s)</h2>
-  <div (onClick)="openDialog(result.id)" *ngFor="let result of searchResults">{{ result | json }}</div>
+  <div (click)="openDialog(result.id)" *ngFor="let result of searchResults">{{ result | json }}</div>
   <div class="feedback-text" *ngIf="totalResults === 0">
     <h2>Sorry, there is no movie with this title :(</h2>
   </div>
