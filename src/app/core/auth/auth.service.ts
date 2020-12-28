@@ -38,7 +38,7 @@ export class AuthService {
       this.changeUserState(formGroup.get('username')?.value);
       this._router.navigate([ROUTING_TREE.search.path]);
     } else {
-      alert('Your username or password is incorrect!');
+      alert('Your e-mail address or password is incorrect!');
     }
   }
 

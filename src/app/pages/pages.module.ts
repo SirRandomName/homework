@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LoginComponent} from './login/login.component';
-import {SearchComponent} from './search/search.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [LoginComponent, SearchComponent],
-  imports: [CommonModule]
+  declarations: [LoginComponent],
+  imports: [CommonModule, ReactiveFormsModule]
 })
 export class PagesModule {}
