@@ -1,4 +1,5 @@
 @import 'src/styles/sizes.scss';
+@import 'src/styles/viewports.scss';
 
 .header {
   width: 100%;
@@ -18,16 +19,46 @@
     justify-content: space-between;
     height: inherit;
     padding: 0 15px;
-    .user {
+    .company {
       display: flex;
       align-items: center;
       height: inherit;
+      flex-grow: 0;
+      flex-shrink: 0;
+      .company-logo {
+        width: 20px;
+        height: 20px;
+        fill: var(--background-text);
+      }
+      .company-name {
+        font-family: 'Righteous', cursive;
+      }
+    }
+    .user {
+      display: flex;
+      align-items: flex-end;
+      height: inherit;
+      flex-direction: column;
+      justify-content: center;
       .button {
         cursor: pointer;
         border: 1px solid var(--background-text);
         background-color: transparent;
         color: var(--background-text);
-        margin-left: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $medium-min) {
+  .header {
+    .container {
+      .user {
+        align-items: center;
+        flex-direction: row;
+        .button {
+          margin-left: 20px;
+        }
       }
     }
   }
