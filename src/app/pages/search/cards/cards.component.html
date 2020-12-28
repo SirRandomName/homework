@@ -1,0 +1,11 @@
+<section
+  #cardsContainer
+  class="cards-container"
+  *ngIf="cards"
+  infinite-scroll
+  [infiniteScrollDistance]="scrollDistance"
+  [infiniteScrollThrottle]="throttle"
+  (scrolled)="onScrollEnd()"
+>
+  <app-card *ngFor="let card of cards" [card]="card" (onCardClick)="cardClick($event)" @cardAnimation></app-card>
+</section>

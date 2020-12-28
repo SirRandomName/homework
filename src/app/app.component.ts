@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {IUserState, UserState} from './core/auth/auth.model';
+import {AuthService} from './core/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'homework';
+  userState!: IUserState;
+  private userStateSub: Subscription;
+
+  constructor(private _authService: AuthService) {
+    this.userStateSub = this._authService.userState$.subscribe((userSate: UserState) => {
+      this.userState = userSate.getUserState();
+    });
+  }
+
+  logout() {
+    this._authService.logOut();
+  }
+
+  ngOnDestroy() {
+    this.userStateSub.unsubscribe();
+  }
 }

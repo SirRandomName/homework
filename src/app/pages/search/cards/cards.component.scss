@@ -1,0 +1,23 @@
+@import 'src/styles/viewports.scss';
+
+.cards-container {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(32%, 1fr));
+}
+
+@media screen and (max-width: $medium-max) and (min-width: $medium-min) {
+  .cards-container {
+    display: grid;
+    grid-gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+  }
+}
+
+@media screen and (min-width: $large-min) {
+  .cards-container {
+    display: grid;
+    grid-gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
+  }
+}

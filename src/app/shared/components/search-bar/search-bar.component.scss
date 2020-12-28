@@ -1,0 +1,32 @@
+$element-height: 40px;
+$button-width: $element-height;
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: var(--background-text);
+  height: $element-height;
+  border-bottom: 1px solid var(--background-text);
+  .input {
+    width: calc(100% - #{$button-width});
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    height: inherit;
+    outline: -webkit-focus-ring-color auto 0;
+  }
+  .button {
+    width: $button-width;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    height: inherit;
+    cursor: pointer;
+    padding: 0;
+    .close-icon {
+      fill: var(--background-text);
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
