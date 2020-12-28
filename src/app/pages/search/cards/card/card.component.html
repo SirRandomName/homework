@@ -1,0 +1,6 @@
+<figure *ngIf="card" class="card-container" (click)="cardClick(card)">
+  <img class="poster" [src]="card.poster_path | posterLink" alt="poster of {{ card.original_title || card.original_name }}" />
+  <figcaption class="title">{{ card.original_title || card.original_name || 'Unknown title' }}</figcaption>
+  <p class="title">{{ card.genre_ids | genres }}</p>
+  <p class="title">{{ (card.release_date | date: onlyYearFormat) || '-' }}</p>
+</figure>
