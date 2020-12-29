@@ -29,6 +29,12 @@ export class SearchComponent implements OnInit {
   detailsParam!: string | null;
   constructor(private _searchService: SearchService, private _router: Router, private _route: ActivatedRoute) {
     this.imdbTitleUrl = this._searchService.imdbTitleUrl;
+    this.setPageState();
+  }
+
+  ngOnInit(): void {}
+
+  setPageState() {
     this.searchParam = this._route.snapshot.queryParams['search'];
     this.detailsParam = this._route.snapshot.queryParams['details'];
     if (typeof this.searchParam === 'string') {
@@ -40,9 +46,7 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
-
-  resetSearchState() {
+  resetSearchState(): void {
     this.actualPage = 1;
     this.totalPages = undefined;
     this.results = [];
