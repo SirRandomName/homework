@@ -10,6 +10,10 @@ export class SearchService {
   imdbTitleUrl = `${environment.imdbHostUrl}title/`;
   genreList: IGenre[] = [];
   constructor(private _http: HttpClient) {
+    this.getGenres();
+  }
+
+  getGenres() {
     this.getGenreList()
       .pipe(take(1))
       .subscribe((data: IGenreList) => {
