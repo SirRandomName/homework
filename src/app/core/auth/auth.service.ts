@@ -33,13 +33,16 @@ export class AuthService {
   }
 
   // todo: feedback! - toast?
-  public logIn(formGroup: FormGroup): void {
-    if (formGroup.valid) {
-      this.changeUserState(formGroup.get('username')?.value);
-      this._router.navigate([ROUTING_TREE.search.path]);
-    } else {
-      alert('Your e-mail address or password is incorrect!');
-    }
+  public logIn(formGroup: FormGroup): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (formGroup.valid) {
+        this.changeUserState(formGroup.get('username')?.value);
+        this._router.navigate([ROUTING_TREE.search.path]);
+        resolve();
+      } else {
+        reject('Your e-mail address or password is incorrect!');
+      }
+    });
   }
 
   public logOut(): void {

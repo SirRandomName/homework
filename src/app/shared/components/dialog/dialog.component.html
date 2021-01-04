@@ -1,5 +1,5 @@
-<div class="overlay" *ngIf="isOpen" (click)="onCloseDialog()"></div>
-<article class="dialog" *ngIf="isOpen" @dialogAnimation>
+<div class="overlay" (click)="onCloseDialog()"></div>
+<article class="dialog" @dialogAnimation>
   <section class="header">
     <button class="close-button" (click)="onCloseDialog()">
       <svg class="close-icon"><use [attr.xlink:href]="'assets/search-delete.svg#search-delete'"></use></svg>

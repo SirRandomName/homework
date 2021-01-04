@@ -3,8 +3,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {ROUTING_TREE} from 'src/app/app-routing.model';
 import {DIALOG_ANIMATION_TIME} from 'src/app/shared/components/dialog/dialog.model';
+import {MovieDetailsDialogComponent} from './movie-details-dialog/movie-details-dialog.component';
+import {IMovieDetailsDialogData} from './movie-details-dialog/movie-details-dialog.model';
 import {IMovie, IMovieDetails, ISearchMovieResponse} from './search.model';
 import {SearchService} from './search.service';
+import {DialogService} from 'src/app/core/dialog/dialog.service';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -20,21 +24,32 @@ export class SearchComponent implements OnInit {
   totalPages: number | undefined;
   results: IMovie[] = [];
   totalResults: number = 0;
-  // dialog
-  isDetailsDialogOpen = false;
-  actualDetails: IMovieDetails | null = null;
-  imdbTitleUrl!: string;
-  // use query params
+  // query params
   searchParam!: string | null;
   detailsParam!: string | null;
-  constructor(private _searchService: SearchService, private _router: Router, private _route: ActivatedRoute) {
-    this.imdbTitleUrl = this._searchService.imdbTitleUrl;
+  // dialog
+  dialogData!: IMovieDetailsDialogData;
+  constructor(
+    private _searchService: SearchService,
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _dialogService: DialogService
+  ) {
+    this.setDetailsDialogObject();
     this.setPageState();
   }
 
   ngOnInit(): void {}
 
-  setPageState() {
+  setDetailsDialogObject(): void {
+    const detailsDialogDataObject: IMovieDetailsDialogData = {
+      details: null,
+      imdbTitleUrl: this._searchService.imdbTitleUrl
+    };
+    this.dialogData = detailsDialogDataObject;
+  }
+
+  setPageState(): void {
     this.searchParam = this._route.snapshot.queryParams['search'];
     this.detailsParam = this._route.snapshot.queryParams['details'];
     if (typeof this.searchParam === 'string') {
@@ -72,16 +87,14 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  onScroll() {
+  onScroll(): void {
     this.actualPage++;
     this.search(this.lastSearch, this.actualPage);
   }
 
   onClose(): void {
     // do not destroy the content until the animation is done
-    this.isDetailsDialogOpen = false;
     setTimeout(() => {
-      this.actualDetails = null;
       this._router.navigate([ROUTING_TREE.search.path], {queryParams: {search: this.lastSearch}});
     }, DIALOG_ANIMATION_TIME);
   }
@@ -92,8 +105,9 @@ export class SearchComponent implements OnInit {
 
   openDialog(id: number): void {
     this._searchService.getDetails(id).subscribe((data: IMovieDetails) => {
-      this.isDetailsDialogOpen = true;
-      this.actualDetails = data;
+      this.dialogData.details = data;
+      const dialogRef = this._dialogService.open(MovieDetailsDialogComponent, this.dialogData);
+      dialogRef.instance.close.pipe(take(1)).subscribe(() => this.onClose());
       this._router.navigate([ROUTING_TREE.search.path], {queryParams: {search: this.lastSearch, details: id}});
     });
   }

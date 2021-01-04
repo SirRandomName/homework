@@ -4,8 +4,9 @@
 }
 
 .valid {
-  color: green;
+  color: var(--success);
 }
+
 .invalid {
-  color: red;
+  color: var(--fail);
 }

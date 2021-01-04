@@ -6,9 +6,10 @@ export interface IUserState {
   userName: string;
   isLogedIn: boolean;
 }
-
-//  Property 'userName' is private in type 'UserState' but not in type 'IUserState'.
-//  export class UserState implements IUserState {
+/**
+ * Property 'userName' is private in type 'UserState' but not in type 'IUserState'.
+ * export class UserState implements IUserState {
+ */
 export class UserState {
   private userName: string = '';
   private isLogedIn = false;

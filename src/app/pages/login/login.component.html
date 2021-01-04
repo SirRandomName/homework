@@ -1,41 +1,58 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <label class="label">
     E-mail
-    <input type="text" [formControlName]="'username'" autocomplete="on" placeholder="example@mail.address" />
-    <div *ngIf="loginForm.get('username')?.hasError('required') && loginForm.controls['username']?.touched" class="invalid">
+    <input type="text" [formControlName]="LoginControl.USERNAME" autocomplete="on" placeholder="example@mail.address" />
+    <div
+      *ngIf="loginForm.get(LoginControl.USERNAME)?.hasError('required') && loginForm.controls[LoginControl.USERNAME]?.touched"
+      class="invalid"
+    >
       E-mail is a required field!
     </div>
-    <div *ngIf="loginForm.get('username')?.hasError('pattern') && loginForm.controls['username']?.touched" class="invalid">
+    <div
+      *ngIf="loginForm.get(LoginControl.USERNAME)?.hasError('pattern') && loginForm.controls[LoginControl.USERNAME]?.touched"
+      class="invalid"
+    >
       E-mail is not valid!
     </div>
   </label>
   <label class="label"
     >Password
-    <input type="password" [formControlName]="'password'" autocomplete="current-password" />
-    <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.controls['password']?.touched" class="invalid">
+    <input type="password" [formControlName]="LoginControl.PASSWORD" autocomplete="current-password" placeholder="your password" />
+    <div
+      *ngIf="loginForm.get(LoginControl.PASSWORD)?.hasError('required') && loginForm.controls[LoginControl.PASSWORD]?.touched"
+      class="invalid"
+    >
       Password is a required field!
     </div>
     <div
-      [class.valid]="!loginForm.get('password')?.hasError('uppercaseValidator')"
-      [class.invalid]="loginForm.get('password')?.hasError('uppercaseValidator') && loginForm.controls['password']?.touched"
+      [class.valid]="!loginForm.get(LoginControl.PASSWORD)?.hasError('uppercaseValidator')"
+      [class.invalid]="
+        loginForm.get(LoginControl.PASSWORD)?.hasError('uppercaseValidator') && loginForm.controls[LoginControl.PASSWORD]?.touched
+      "
     >
       one uppercase
     </div>
     <div
-      [class.valid]="!loginForm.get('password')?.hasError('lowercaseValidator')"
-      [class.invalid]="loginForm.get('password')?.hasError('lowercaseValidator') && loginForm.controls['password']?.touched"
+      [class.valid]="!loginForm.get(LoginControl.PASSWORD)?.hasError('lowercaseValidator')"
+      [class.invalid]="
+        loginForm.get(LoginControl.PASSWORD)?.hasError('lowercaseValidator') && loginForm.controls[LoginControl.PASSWORD]?.touched
+      "
     >
       one lowercase
     </div>
     <div
-      [class.valid]="!loginForm.get('password')?.hasError('numberValidator')"
-      [class.invalid]="loginForm.get('password')?.hasError('numberValidator') && loginForm.controls['password']?.touched"
+      [class.valid]="!loginForm.get(LoginControl.PASSWORD)?.hasError('numberValidator')"
+      [class.invalid]="
+        loginForm.get(LoginControl.PASSWORD)?.hasError('numberValidator') && loginForm.controls[LoginControl.PASSWORD]?.touched
+      "
     >
       one digit
     </div>
     <div
-      [class.valid]="!loginForm.get('password')?.hasError('legnthValidator')"
-      [class.invalid]="loginForm.get('password')?.hasError('legnthValidator') && loginForm.controls['password']?.touched"
+      [class.valid]="!loginForm.get(LoginControl.PASSWORD)?.hasError('legnthValidator')"
+      [class.invalid]="
+        loginForm.get(LoginControl.PASSWORD)?.hasError('legnthValidator') && loginForm.controls[LoginControl.PASSWORD]?.touched
+      "
     >
       at least 6 characters
     </div>

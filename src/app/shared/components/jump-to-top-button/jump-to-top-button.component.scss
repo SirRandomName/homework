@@ -1,8 +1,10 @@
+@import 'src/styles/z-index.scss';
+
 $button-size: 50px;
 
 .jump-to-top-container {
   position: fixed;
-  // appear in one position - without translate it whould grow from the corner
+  // appear from its own center - without transform:translate it whould grow from the corner
   transform: translate(50%, 50%);
   bottom: 15 + $button-size / 2;
   right: 15 + $button-size / 2;
@@ -13,7 +15,7 @@ $button-size: 50px;
   background-color: var(--background);
   color: var(--background-text);
   cursor: pointer;
-  z-index: 500;
+  z-index: $layout-z-index;
   opacity: 0;
   transition: all 0.2s ease-in-out;
   &.visible {
@@ -27,5 +29,6 @@ $button-size: 50px;
   }
   &:focus {
     outline: -webkit-focus-ring-color auto 0;
+    outline: transparent auto 0;
   }
 }
