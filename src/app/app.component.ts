@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {IUserState, UserState} from './core/auth/auth.model';
 import {AuthService} from './core/auth/auth.service';
@@ -11,8 +11,8 @@ import {SnackBarService} from './core/snack-bar/snack-bar.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild('dialogContainer') dialogContainer!: any;
-  @ViewChild('snackBarContainer') snackBarContainer!: any;
+  @ViewChild('dialogContainer') dialogContainer!: ElementRef;
+  @ViewChild('snackBarContainer') snackBarContainer!: ElementRef;
   userState!: IUserState;
   private userStateSub: Subscription;
 
