@@ -1,7 +1,7 @@
 <section class="content">
   <input class="input" #searchInput (input)="inputChanged($event)" [value]="value" type="text" [placeholder]="placeholder" />
   <!-- How to show to the user, that we need minimum 3 character to search? -->
-  <button class="button" (click)="resetInput()">
+  <button class="button" (click)="clearInput()">
     <svg class="close-icon"><use [attr.xlink:href]="'assets/search-delete.svg#search-delete'"></use></svg>
   </button>
 </section>
