@@ -23,6 +23,9 @@ $button-width: $element-height;
     height: inherit;
     cursor: pointer;
     padding: 0;
+    &:focus {
+      outline: transparent auto 0;
+    }
     .close-icon {
       fill: var(--background-text);
       width: 25px;
