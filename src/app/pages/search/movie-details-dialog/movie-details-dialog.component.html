@@ -1,1 +1,3 @@
-<p>movie-details-dialog works!</p>
+<app-dialog (closeDialog)="onClose()">
+  <app-movie-details [details]="data.details" [imdbTitleUrl]="data.imdbTitleUrl"></app-movie-details>
+</app-dialog>
