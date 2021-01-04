@@ -1,5 +1,5 @@
 import {animate, style, transition, trigger} from '@angular/animations';
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {DIALOG_ANIMATION_TIME} from './dialog.model';
 
 @Component({
@@ -20,7 +20,6 @@ import {DIALOG_ANIMATION_TIME} from './dialog.model';
   ]
 })
 export class DialogComponent {
-  @Input() isOpen: boolean = false;
   @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
   constructor() {}
 
