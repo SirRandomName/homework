@@ -4,12 +4,13 @@ import {environment} from 'src/environments/environment';
 import {EMPTY, Observable} from 'rxjs';
 import {IGenre, IGenreList, IMovieDetailsError} from './search.model';
 import {catchError, take} from 'rxjs/operators';
+import {SnackBarService} from 'src/app/core/snack-bar/snack-bar.service';
 
 @Injectable()
 export class SearchService {
   imdbTitleUrl = `${environment.imdbHostUrl}title/`;
   genreList: IGenre[] = [];
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient, private _snackService: SnackBarService) {
     this.getGenres();
   }
 
@@ -48,11 +49,11 @@ export class SearchService {
   getDetails(id: number): Observable<any> {
     let params = new HttpParams().set('api_key', environment.movieApiKey);
     const url = `${environment.movieHostUrl}movie/${id}`;
-    return this._http.get(url, {params}).pipe(catchError(this.handleDetailsError));
+    return this._http.get(url, {params}).pipe(catchError((error: IMovieDetailsError) => this.handleDetailsError(error)));
   }
 
   handleDetailsError(error: IMovieDetailsError) {
-    alert(`An error occurred: ${error.error.status_message}`);
+    this._snackService.openErrorSnackBar(error.error.status_message);
     return EMPTY;
   }
 }

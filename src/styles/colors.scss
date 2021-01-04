@@ -5,4 +5,12 @@
   --imdb-yellow: rgb(245, 197, 24);
   --scrollbar-track: #ddd;
   --scrollbar-thumb: #666;
+  // for text on normal background
+  --success: green;
+  --error: red;
+  // for background with normal text
+  --success-background: rgb(108, 160, 108);
+  --success-background-text: black;
+  --error-background: rgb(246, 107, 107);
+  --error-background-text: black;
 }

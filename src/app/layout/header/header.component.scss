@@ -1,5 +1,6 @@
 @import 'src/styles/sizes.scss';
 @import 'src/styles/viewports.scss';
+@import 'src/styles/z-index.scss';
 
 .header {
   width: 100%;
@@ -11,9 +12,9 @@
   background-color: var(--background);
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: $layout-z-index;
   .container {
-    width: $max-width;
+    width: $content-max-width;
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -8,10 +8,20 @@ import {PagesModule} from './pages/pages.module';
 import {ComponentsModule} from './shared/components/components.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LayoutModule} from './layout/layout.module';
+import {PortalModule} from '@angular/cdk/portal';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, ReactiveFormsModule, PagesModule, ComponentsModule, LayoutModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    PagesModule,
+    ComponentsModule,
+    LayoutModule,
+    PortalModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

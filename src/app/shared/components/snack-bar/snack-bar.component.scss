@@ -1,0 +1,24 @@
+@import 'src/styles/sizes.scss';
+@import 'src/styles/z-index.scss';
+
+.container {
+  position: fixed;
+  padding: 15px;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+  align-items: center;
+  border-radius: $border-radius;
+  background-color: var(--background-text);
+  color: var(--background);
+  z-index: $snack-bar-z-index;
+  &.error {
+    background-color: var(--error-background);
+    color: var(--error-background-text);
+  }
+  &.success {
+    background-color: var(--success-background);
+    color: var(--success-background-text);
+  }
+}
