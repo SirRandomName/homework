@@ -14,6 +14,7 @@ export class SearchBarComponent implements OnDestroy {
   @Input() value: string = '';
   @Input() placeholder: string = '';
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
+  @Output() clear: EventEmitter<void> = new EventEmitter<void>();
 
   private keyPress$ = new Subject<string>();
   private keyPressSub!: Subscription;
@@ -31,9 +32,10 @@ export class SearchBarComponent implements OnDestroy {
     this.keyPress$.next(event?.target?.value);
   }
 
-  resetInput(): void {
+  clearInput(): void {
     this.searchInput.nativeElement.value = '';
     this.keyPress$.next('');
+    this.clear.emit();
     this.searchInput.nativeElement.focus();
   }
 

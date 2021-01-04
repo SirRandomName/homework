@@ -53,7 +53,7 @@ export class SearchComponent implements OnInit {
     this.searchParam = this._route.snapshot.queryParams['search'];
     this.detailsParam = this._route.snapshot.queryParams['details'];
     if (typeof this.searchParam === 'string') {
-      this.search(this.searchParam);
+      this.onSearch(this.searchParam);
       this.inputValue = this.searchParam;
     }
     if (typeof this.detailsParam === 'string') {
@@ -69,7 +69,11 @@ export class SearchComponent implements OnInit {
     this.movieSearchResults$.next(this.results);
   }
 
-  search(text: string, page: number = 1): void {
+  onSearchBarClear(): void {
+    this._router.navigate([ROUTING_TREE.search.path], {queryParams: {}});
+  }
+
+  onSearch(text: string, page: number = 1): void {
     // need to reset the previous results
     if (this.lastSearch !== text) {
       this.resetSearchState();
@@ -89,7 +93,7 @@ export class SearchComponent implements OnInit {
 
   onScroll(): void {
     this.actualPage++;
-    this.search(this.lastSearch, this.actualPage);
+    this.onSearch(this.lastSearch, this.actualPage);
   }
 
   onClose(): void {
