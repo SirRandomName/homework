@@ -10,10 +10,12 @@ import {PipesModule} from 'src/app/shared/pipes/pipes.module';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {CardsComponent} from './cards/cards.component';
 import {CardComponent} from './cards/card/card.component';
+import {MovieDetailsDialogComponent} from './movie-details-dialog/movie-details-dialog.component';
 
 @NgModule({
-  declarations: [SearchComponent, MovieDetailsComponent, CardsComponent, CardComponent],
+  declarations: [SearchComponent, MovieDetailsComponent, CardsComponent, CardComponent, MovieDetailsDialogComponent],
   providers: [SearchService],
-  imports: [CommonModule, SearchRoutingModule, ComponentsModule, HttpClientModule, PipesModule, InfiniteScrollModule]
+  imports: [CommonModule, SearchRoutingModule, ComponentsModule, HttpClientModule, PipesModule, InfiniteScrollModule],
+  entryComponents: [MovieDetailsComponent]
 })
 export class SearchModule {}
